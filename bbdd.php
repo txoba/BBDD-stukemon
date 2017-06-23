@@ -82,6 +82,13 @@ function selectPokemonByTrainer($trainer) {
     desconectar($con);
     return $resultado;
 }
+function selectPokemonByName($pokemon) {
+    $con = conectar("stukemon");
+    $query = "select * from pokemon where name='$pokemon';";
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
 function selectPokemonLevelLife() {
     $con = conectar("stukemon");
     $query = "select * from pokemon order by level desc, life desc;";
@@ -164,53 +171,3 @@ function updatePociones($puntosFinal,$pociones,$name) {
     }
     desconectar($con);
 }
-/*
-function updateLife($name) {
-    $con = conectar("stukemon");
-    $update = "update pokemon set life=life+50 where name='$name';";
-    if (mysqli_query($con, $update, $potions)) {
-        echo "Vida mejorada!";
-        echo "<form action='index.php' method='post'>";
-        echo "<input type='submit' value='Volver a la home'>";
-        echo "</form>";
-    } else {
-        echo mysqli_error($con);
-    }
-    desconectar($con);
-}
-
-function updatePotions($name) {
-    $con = conectar("stukemon");
-    $potions = "update trainer set potions=potions-1 where name='$name';";
-    if (mysqli_query($con, $update, $potions)) {
-        echo "Vida mejorada!";
-        echo "<form action='index.php' method='post'>";
-        echo "<input type='submit' value='Volver a la home'>";
-        echo "</form>";
-    } else {
-        echo mysqli_error($con);
-    }
-    desconectar($con);
-} 
-
-function updatePoints($name,$needpoints) {
-    $con = conectar("stukemon");
-    $update = "update trainer set points=points-'$needpoints' where name='$name';";
-    if (mysqli_query($con, $update, $potions)) {
-        echo "Vida mejorada!";
-        echo "<form action='index.php' method='post'>";
-        echo "<input type='submit' value='Volver a la home'>";
-        echo "</form>";
-    } else {
-        echo mysqli_error($con);
-    }
-    desconectar($con);
-} 
-*/
-
-
-
-
-
-
-
