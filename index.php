@@ -13,7 +13,7 @@ que vamos a implementar en php
         <a href="altaPokemon.php">Dar de alta un pokemon</a><br>
         <a href="batalla.php">Batalla</a><br>
         <a href="mejorarVida.php">Mejorar vida</a><br>
-        <a href="darPociones">Conseguir pociones de salud</a><br>
+        <a href="obtenerPociones.php">Conseguir pociones de salud</a><br>
         <a href="listadoPokemon.php">Listado pokemon</a><br>
         <a href="rankingTrainers.php">Ranking de entrenadores</a><br>
         <a href="rankingBattles.php">Ranking de ballatas</a><br>

@@ -1,35 +1,41 @@
 <?php
-require_once('bbdd.php');
-if (isset($_POST["seleccionar"])) {
-    $datos = selectPokemonByTrainer($name);
-    echo " 
-        Seleccionar pokemon:<select name='pokemon' requiered>";
-        while ($fila = mysqli_fetch_array($datos)) {
-        extract($fila);
-        echo "<option value='$name'>$name</option>";
-        }
-    echo' 
-        </select>
-        <input type = "submit" name = "seleccionar2" value = "Seleccionar"><br>
-        </form>';
-}
+require_once 'bbdd.php';
 
-else if (isset($_POST["seleccionar2"])) {
-    updatePotions($name);
-    updateLife($name);
+if (isset($_POST['enviar'])) {
+    echo '<form action="mejorarvida.php" method="POST">';
+    $enviar = $_POST['enviar'];
+    $nombre = $_POST['trainer'];
+    echo "<input type='hidden' value='$nombre' name='entrenador'>";
+    echo "Selecciona cual es tu pokemon: ";
+    echo "<select name='pokemon'>";
+    $nombre2 = selectPokemonByTrainer($nombre);
+    while ($fila = mysqli_fetch_array($nombre2)) {
+        extract($fila);
+        echo "<option value='$name'>$name. Vida: $life</option>";
+    }
+    echo "</select>";
+    echo "<input type='submit' value='Seleccionar pokemon' name='enviar2'>";
+    echo "</form>";
+} 
+
+else if (isset($_POST['enviar2'])) {
+    $entre = $_POST['entrenador'];
+    $pokemon = $_POST['pokemon'];
+    modificarpociones($entre);
+    modificarvidapokemon($pokemon);
 }
 
 else {
-    $datos = selectTrainerPociones();
-    echo " 
-        Seleccionar entrenador:<select name='trainer' requiered>";
-        while ($fila = mysqli_fetch_array($datos)) {
+    echo '<form action="mejorarvida.php" method="POST">';
+    echo "Seleccionar Entrenador: ";
+    echo "<select name='trainer'>";
+    $nombres = selectTrainerPociones();
+    while ($fila = mysqli_fetch_array($nombres)) {
         extract($fila);
         echo "<option value='$name'>$name</option>";
-        }
-    echo' 
-        </select>
-        <input type = "submit" name = "seleccionar" value = "Seleccionar"><br>
-        </form>';
+    }
+    echo "</select>";
+    echo "<input type='submit' value='Seleccionar entrenador' name='enviar'>";
+    echo "</form>";
 }
 ?>
