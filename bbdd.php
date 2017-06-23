@@ -96,13 +96,6 @@ function selectRankingBatalla() {
     desconectar($con);
     return $resultado;
 }
-function selectPoints($trainer) {
-    $con = conectar("stukemon");
-    $query = "select points from pokemon where trainer='$trainer';";
-    $resultado = mysqli_query($con, $query);
-    desconectar($con);
-    return $resultado;
-}
 
 //UPDATES
 
@@ -137,6 +130,9 @@ function modificarpociones($name) {
         echo "Pociones actualizadas<br>";
     } else {
         echo mysqli_error($con);
+        echo "<form action='index.php' method='post'>";
+        echo "<input type='submit' value='Volver a la home'>";
+        echo "</form>";
     }
     desconectar($con);
 }
@@ -148,18 +144,23 @@ function modificarvidapokemon($pokemon) {
         header("refresh:5;url=index.php");
     } else {
         echo mysqli_error($con);
+        echo "<form action='index.php' method='post'>";
+        echo "<input type='submit' value='Volver a la home'>";
+        echo "</form>";
     }
     desconectar($con);
 }
-
-function updatePociones($numpociones,$numpocionesfinal,$name) {
+function updatePociones($puntosFinal,$pociones,$name) {
     $con = conectar("stukemon");
-    $update = "update trainer set points=points-$numpociones, potions=potions+$numpocionesfinal where name='$name'";
+    $update = "update trainer set points=points-$puntosFinal, potions=potions+$pociones where name='$name'";
     if (mysqli_query($con, $update)) {
         echo "Puntos y pociones actualizados<br>";
         header("refresh:5;url=index.php");
     } else {
         echo mysqli_error($con);
+        echo "<form action='index.php' method='post'>";
+        echo "<input type='submit' value='Volver a la home'>";
+        echo "</form>";
     }
     desconectar($con);
 }

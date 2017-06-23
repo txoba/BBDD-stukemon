@@ -5,14 +5,21 @@ require_once 'bbdd.php';
 if (isset($_POST['obtener'])) {
     $entrenador = $_POST['trainer'];
     $pociones = $_POST['potions'];
-    $puntos = selectPoints($entrenador);
-    if ($puntos < 10 * $pociones) {
-        $numPociones = 10 * $pociones;
-        $numPocionesFinal = $numPociones / 10;
-        updatePociones($numPociones, $numPocionesFinal, $entrenador);
+    $select= selectTrainerByName($entrenador);
+        $fila = mysqli_fetch_array($select);
+        extract($fila);
+    $puntosFinal = 10 * $pociones;
+    if ($points > $puntosFinal) {
+        updatePociones($puntosFinal, $pociones, $entrenador);
     } else {
-
-        echo 'no tienes dinero--------><a href="index.php">volver al menu principal</a>';
+        $select= selectTrainerByName($entrenador);
+        $fila = mysqli_fetch_array($select);
+        extract($fila);
+        $faltan = $puntosFinal-$points;
+        echo "A $entrenador que tiene $points puntos, le faltan $faltan puntos para obtener $pociones pociones.";
+        echo "<form action='index.php' method='post'>";
+        echo "<input type='submit' value='Volver a la home'>";
+        echo "</form>";
     }
 } else {
     echo '<form action="" method="POST">';
