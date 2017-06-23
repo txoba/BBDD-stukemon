@@ -21,7 +21,7 @@ function newTrainer($name, $pokeballs, $potions, $points) {
     $insert = "insert into trainer values('$name', $pokeballs, $potions, $points)";
     if (mysqli_query($conexion, $insert)) {
         echo "Entrenador dado de alta<br>";
-        header("refresh:5;url=index.php");
+        header("refresh:3;url=index.php");
     } else {
         echo mysqli_error($conexion);
     }
@@ -32,7 +32,7 @@ function newPokemon($name, $type, $ability, $attack, $defense, $speed, $life, $l
     $insert = "insert into pokemon values('$name', '$type', '$ability', $attack, $defense, $speed, $life, $level, '$trainer')";
     if (mysqli_query($conexion, $insert)) {
         echo "Pokemon dado de alta<br>";
-        header("refresh:5;url=index.php");
+        header("refresh:3;url=index.php");
     } else {
         echo mysqli_error($conexion);
     }
@@ -148,7 +148,7 @@ function modificarvidapokemon($pokemon) {
     $update = "update pokemon set life=life+50 where name='$pokemon'";
     if (mysqli_query($con, $update)) {
         echo "Vida modificada<br>";
-        header("refresh:5;url=index.php");
+        header("refresh:3;url=index.php");
     } else {
         echo mysqli_error($con);
         echo "<form action='index.php' method='post'>";
@@ -162,7 +162,7 @@ function updatePociones($puntosFinal,$pociones,$name) {
     $update = "update trainer set points=points-$puntosFinal, potions=potions+$pociones where name='$name'";
     if (mysqli_query($con, $update)) {
         echo "Puntos y pociones actualizados<br>";
-        header("refresh:5;url=index.php");
+        header("refresh:3;url=index.php");
     } else {
         echo mysqli_error($con);
         echo "<form action='index.php' method='post'>";
